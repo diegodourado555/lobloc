@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Login</title>
+</head>
+<body>
+	<form class="form-horizontal" th:object="${login}"
+		th:action="j_spring_security_check" method="POST" style="margin: 10px">
+		<div class="form-group">
+			<fieldset>
+				<div class="form-group">
+                        <input type="text" name="j_username" id="j_username" class="form-control input-lg"
+                               placeholder="Usuário" required="true" autofocus="true"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="j_password" id="j_password" class="form-control input-lg"
+                               placeholder="Senha" required="true"/>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Entrar"/>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                        </div>
+                    </div>
+			</fieldset>
+		</div>
+	</form>
+
+</body>
+</html>
