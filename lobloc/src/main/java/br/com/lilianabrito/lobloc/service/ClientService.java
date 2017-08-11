@@ -22,8 +22,8 @@ public class ClientService {
 		return clientRepository.findOne(id);
 	}
 
-	public Client save(Client post) {
-		return clientRepository.saveAndFlush(post);
+	public Client save(Client client) {
+		return clientRepository.saveAndFlush(client);
 	}
 
 	public void delete(Integer id) {

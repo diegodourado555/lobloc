@@ -16,16 +16,16 @@ public class Client implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int clientcode;
-
+	private Integer clientcode;
+	@Column
 	private String address;
-
+	@Column
 	private String cpf;
-
+	@Column
 	private String email;
-
+	@Column
 	private String name;
-
+	@Column
 	private String phone;
 
 	//bi-directional many-to-one association to Estimate
@@ -34,12 +34,34 @@ public class Client implements Serializable {
 
 	public Client() {
 	}
+	
+	public Client(Integer clientcode, String address, String cpf, String email, String name, String phone,
+			List<Estimate> estimates) {
+		super();
+		this.clientcode = clientcode;
+		this.address = address;
+		this.cpf = cpf;
+		this.email = email;
+		this.name = name;
+		this.phone = phone;
+		this.estimates = estimates;
+	}
+	public Client(String address, String cpf, String email, String name, String phone,
+			List<Estimate> estimates) {
+		super();
+		this.address = address;
+		this.cpf = cpf;
+		this.email = email;
+		this.name = name;
+		this.phone = phone;
+		this.estimates = estimates;
+	}
 
-	public int getClientcode() {
+	public Integer getClientcode() {
 		return this.clientcode;
 	}
 
-	public void setClientcode(int clientcode) {
+	public void setClientcode(Integer clientcode) {
 		this.clientcode = clientcode;
 	}
 

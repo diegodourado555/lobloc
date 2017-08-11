@@ -1,5 +1,7 @@
 package br.com.lilianabrito.lobloc.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,35 +14,33 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.lilianabrito.lobloc.service.ClientService;
 import br.com.lilianabrito.lobloc.vo.Client;
+import lombok.Getter;
+import lombok.Setter;
  
 @Controller
 public class ClientController {
-     
+	
     @Autowired
     private ClientService service;
-     
-    @GetMapping("/searchclients")
+    
+	@GetMapping("/searchclients")
     public ModelAndView findAll() {
          
         ModelAndView mv = new ModelAndView("/client/searchclients");
         mv.addObject("clients", service.findAll());
-         
-        return mv;
-    }
-     
-    @GetMapping("/addclient")
-    public ModelAndView add(Client client) {
-         
-        ModelAndView mv = new ModelAndView("/client/addclient");
-        mv.addObject("post", client);
-         
+        mv.addObject("client", new Client());
+        
         return mv;
     }
      
     @GetMapping("/editclient/{id}")
     public ModelAndView edit(@PathVariable("id") Integer id) {
          
-        return add(service.findOne(id));
+        ModelAndView mv = new ModelAndView("/client/searchclients");
+        mv.addObject("clients", service.findAll());
+        mv.addObject("client", service.findOne(id));
+        
+        return mv;
     }
      
     @GetMapping("/deleteclient/{id}")
@@ -55,9 +55,9 @@ public class ClientController {
     public ModelAndView save(@Valid Client client, BindingResult result) {
          
         if(result.hasErrors()) {
-            return add(client);
+            //TODO: fazer algo quando der erro
         }
-         
+        
         service.save(client);
          
         return findAll();
