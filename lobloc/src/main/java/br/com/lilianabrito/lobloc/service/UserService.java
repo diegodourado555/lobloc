@@ -18,16 +18,16 @@ public class UserService {
 		return userRepository.findAll();
 	}
 
-	public User findOne(Integer id) {
-		return userRepository.findOne(id);
+	public User findOne(String cpf) {
+		return userRepository.findOne(cpf);
 	}
 
 	public User save(User user) {
 		return userRepository.saveAndFlush(user);
 	}
 
-	public void delete(Integer id) {
-		userRepository.delete(id);
+	public void delete(String cpf) {
+		userRepository.delete(cpf);
 	}
 
 }

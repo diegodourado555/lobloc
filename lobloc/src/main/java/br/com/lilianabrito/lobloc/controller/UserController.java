@@ -34,19 +34,19 @@ public class UserController {
     }
      
     @GetMapping("/edituser/{id}")
-    public ModelAndView edit(@PathVariable("id") Integer id) {
+    public ModelAndView edit(@PathVariable("id") String cpf) {
          
         ModelAndView mv = new ModelAndView("/user/searchusers");
         mv.addObject("users", service.findAll());
-        mv.addObject("user", service.findOne(id));
+        mv.addObject("user", service.findOne(cpf));
         
         return mv;
     }
      
     @GetMapping("/deleteuser/{id}")
-    public ModelAndView delete(@PathVariable("id") Integer id) {
+    public ModelAndView delete(@PathVariable("id") String cpf) {
          
-        service.delete(id);
+        service.delete(cpf);
          
         return findAll();
     }
