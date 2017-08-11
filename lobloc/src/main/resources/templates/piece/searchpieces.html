@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Peças</title>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet"></link>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<strong>Peças</strong>
+		</div>
+
+		<div class="panel-body">
+			<form class="form-horizontal" th:object="${piece}"
+				th:action="@{/savepiece}" method="POST" style="margin: 10px">
+				<div class="form-group">
+					<fieldset>
+						<div class="form-group row">
+							<div class="col-md-4">
+								<label>Código</label> <input type="text" readonly="true" 
+									class="form-control input-sm" th:field="*{piecescode}"
+									maxlength="50" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4">
+								<label>Cor</label> <input type="text"
+									class="form-control input-sm" th:field="*{color}"
+									autofocus="autofocus" placeholder="Informe a cor"
+									maxlength="50" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4">
+								<label>Preço</label> <input type="text"
+									class="form-control input-sm" th:field="*{price}"
+									maxlength="150" placeholder="Informe o preço" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4">
+								<label>Quantidade</label> <input type="text"
+									class="form-control input-sm" th:field="*{quantity}"
+									maxlength="150" placeholder="Informe a quantidade" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4">
+								<label>Referência</label> <input type="text" readonly="true"
+									class="form-control input-sm" th:field="*{reference}"
+									maxlength="150" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4">
+								<label>Descrição</label> <input type="text"
+									class="form-control input-sm" th:field="*{description}"
+									maxlength="150" />
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="form-group row">
+					<button type="submit" class="btn btn-sm btn-primary">Salvar</button>
+				</div>
+			</form>
+		</div>
+
+		<div class="panel-body">
+			<div class="table-responsive">
+				<table
+					class="table table-sm table-striped table-hover table-bordered">
+					<thead>
+						<tr>
+							<th>Código</th>
+							<th>Cor</th>
+							<th>Preço</th>
+							<th>Quantidade</th>
+							<th>Referência</th>
+							<th>Descrição</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="piece : ${pieces}">
+							<td th:text="${piece.piecescode}"></td>
+							<td th:text="${piece.color}"></td>
+							<td th:text="${piece.price}"></td>
+							<td th:text="${piece.quantity}"></td>
+							<td th:text="${piece.reference}"></td>
+							<td th:text="${piece.description}"></td>
+							<td>
+								<div class="btn-group pull-right">
+									<a class="btn btn-sm btn-primary"
+										th:href="@{/editpiece/{id}(id=${piece.piecescode})}">Editar</a>
+									<a class="delete btn btn-sm btn-danger"
+										th:href="@{/deletepiece/{id}(id=${piece.piecescode})}">Excluir</a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+
+	</div>
+</body>
+</html>

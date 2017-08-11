@@ -3,6 +3,7 @@ package br.com.lilianabrito.lobloc.vo;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -22,17 +23,26 @@ public class Piece implements Serializable {
 
 	private String color;
 
+	private String description;
+
 	private BigDecimal price;
 
 	private int quantity;
 
-	private int reference;
+	private String reference;
 
 	//bi-directional many-to-one association to PiecesAgenda
 	@OneToMany(mappedBy="piece")
 	private List<PiecesAgenda> piecesAgendas;
 
 	public Piece() {
+	}
+	public Piece(boolean inGenerateReferenceNumber) {
+		if(inGenerateReferenceNumber){
+			this.reference = new Timestamp(System.currentTimeMillis()).toString().substring(0,19).replaceAll(" ", "").replaceAll("-", "").replaceAll(":", "");
+		}
+			
+		
 	}
 
 	public int getPiecescode() {
@@ -51,6 +61,14 @@ public class Piece implements Serializable {
 		this.color = color;
 	}
 
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public BigDecimal getPrice() {
 		return this.price;
 	}
@@ -67,11 +85,11 @@ public class Piece implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public int getReference() {
+	public String getReference() {
 		return this.reference;
 	}
 
-	public void setReference(int reference) {
+	public void setReference(String reference) {
 		this.reference = reference;
 	}
 
@@ -96,5 +114,5 @@ public class Piece implements Serializable {
 
 		return piecesAgenda;
 	}
-
+	
 }
