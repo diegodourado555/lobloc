@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Header</title>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet"></link>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
+      <div class="container">
+        
+        <div class="text-right">
+			<p class="header-login">
+				<span><a href="j_spring_security_logout">Sair</a></span>
+			</p>
+		</div>
+        <div class="text-left">
+			<span><a href="/searchclients" id="crudClient">CRUD Cliente</a></span>
+			<span><a href="/searchpieces" id="crudPieces">CRUD Peças</a></span>
+			<span><a href="/searchusers" id="crudUsers">CRUD Usuários</a></span>
+			<span><a href="/searchprofiles" id="crudUsers">CRUD Perfis</a></span>
+			<span><a href="/searchmenus" id="crudUsers">CRUD Menu</a></span>
+		</div>
+        
+      </div>
+    </div>
+  </body>
+</html>
