@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 
@@ -33,16 +31,7 @@ public class Profile implements Serializable {
 	private List<Menu> menus;
 
 	//bi-directional many-to-many association to User
-	@ManyToMany
-	@JoinTable(
-		name="usuario_perfil"
-		, joinColumns={
-			@JoinColumn(name="profilecode")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="cpf")
-			}
-		)
+	@ManyToMany(mappedBy="profiles")
 	private List<User> users;
 
 	public Profile() {

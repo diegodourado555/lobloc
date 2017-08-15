@@ -1,27 +1,26 @@
 package br.com.lilianabrito.lobloc.controller;
 
-import java.util.Optional;
-
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.lilianabrito.lobloc.service.ProfileService;
 import br.com.lilianabrito.lobloc.service.UserService;
 import br.com.lilianabrito.lobloc.vo.User;
-import lombok.Getter;
-import lombok.Setter;
  
 @Controller
 public class UserController {
 	
     @Autowired
     private UserService service;
+
+    @Autowired
+    private ProfileService profileService;
     
 	@GetMapping("/searchusers")
     public ModelAndView findAll() {
@@ -29,6 +28,7 @@ public class UserController {
         ModelAndView mv = new ModelAndView("/user/searchusers");
         mv.addObject("users", service.findAll());
         mv.addObject("user", new User());
+        mv.addObject("profiles", profileService.findAll());
         
         return mv;
     }
@@ -39,6 +39,7 @@ public class UserController {
         ModelAndView mv = new ModelAndView("/user/searchusers");
         mv.addObject("users", service.findAll());
         mv.addObject("user", service.findOne(cpf));
+        mv.addObject("profiles", profileService.findAll());
         
         return mv;
     }
@@ -52,13 +53,11 @@ public class UserController {
     }
  
     @PostMapping("/saveuser")
-    public ModelAndView save(@Valid User user, BindingResult result) {
+    public ModelAndView save(@ModelAttribute("user")User user,            
+            BindingResult result) {
          
-        if(result.hasErrors()) {
-            //TODO: fazer algo quando der erro
-        }
-        
-        service.save(user);
+    	
+    	service.save(user);
          
         return findAll();
     }
