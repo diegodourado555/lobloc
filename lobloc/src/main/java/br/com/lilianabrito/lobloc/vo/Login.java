@@ -4,8 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class Login {
-	@Getter @Setter
+	@Getter
+	@Setter
 	String user;
-	@Getter @Setter
+	@Getter
+	@Setter
 	String password;
 }

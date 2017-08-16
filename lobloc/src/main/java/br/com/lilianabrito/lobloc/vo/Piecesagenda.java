@@ -1,34 +1,39 @@
 package br.com.lilianabrito.lobloc.vo;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.sql.Timestamp;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 /**
- * The persistent class for the pieces_agenda database table.
+ * The persistent class for the piecesagenda database table.
  * 
  */
 @Entity
-@Table(name="pieces_agenda")
-@NamedQuery(name="PiecesAgenda.findAll", query="SELECT p FROM PiecesAgenda p")
-public class PiecesAgenda implements Serializable {
+@NamedQuery(name = "Piecesagenda.findAll", query = "SELECT p FROM Piecesagenda p")
+public class Piecesagenda implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int agendacode;
 
 	private Timestamp datehourremoval;
 
 	private Timestamp datehourreturn;
 
-	//bi-directional many-to-one association to Piece
+	// bi-directional many-to-one association to Piece
 	@ManyToOne
-	@JoinColumn(name="piecescode")
+	@JoinColumn(name = "piecescode")
 	private Piece piece;
 
-	public PiecesAgenda() {
+	public Piecesagenda() {
 	}
 
 	public int getAgendacode() {

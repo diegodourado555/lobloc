@@ -1,21 +1,26 @@
 package br.com.lilianabrito.lobloc.vo;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 /**
  * The persistent class for the client database table.
  * 
  */
 @Entity
-@NamedQuery(name="Client.findAll", query="SELECT c FROM Client c")
+@NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c")
 public class Client implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int clientcode;
 
 	private String address;
@@ -28,8 +33,8 @@ public class Client implements Serializable {
 
 	private String phone;
 
-	//bi-directional many-to-one association to Estimate
-	@OneToMany(mappedBy="client")
+	// bi-directional many-to-one association to Estimate
+	@OneToMany(mappedBy = "client")
 	private List<Estimate> estimates;
 
 	public Client() {

@@ -1,21 +1,27 @@
 package br.com.lilianabrito.lobloc.vo;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.math.BigDecimal;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 /**
  * The persistent class for the estimate database table.
  * 
  */
 @Entity
-@NamedQuery(name="Estimate.findAll", query="SELECT e FROM Estimate e")
+@NamedQuery(name = "Estimate.findAll", query = "SELECT e FROM Estimate e")
 public class Estimate implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int estimatecode;
 
 	private BigDecimal discount;
@@ -24,10 +30,15 @@ public class Estimate implements Serializable {
 
 	private BigDecimal price;
 
-	//bi-directional many-to-one association to Client
+	// bi-directional many-to-one association to Client
 	@ManyToOne
-	@JoinColumn(name="clientcode")
+	@JoinColumn(name = "clientcode")
 	private Client client;
+
+	// bi-directional many-to-one association to Estimatesituation
+	@ManyToOne
+	@JoinColumn(name = "estsitcode")
+	private Estimatesituation estimatesituation;
 
 	public Estimate() {
 	}
@@ -70,6 +81,14 @@ public class Estimate implements Serializable {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public Estimatesituation getEstimatesituation() {
+		return this.estimatesituation;
+	}
+
+	public void setEstimatesituation(Estimatesituation estimatesituation) {
+		this.estimatesituation = estimatesituation;
 	}
 
 }

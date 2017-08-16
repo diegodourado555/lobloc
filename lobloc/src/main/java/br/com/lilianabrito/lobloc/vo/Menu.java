@@ -1,36 +1,32 @@
 package br.com.lilianabrito.lobloc.vo;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 
 /**
  * The persistent class for the menu database table.
  * 
  */
 @Entity
-@NamedQuery(name="Menu.findAll", query="SELECT m FROM Menu m")
+@NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m")
 public class Menu implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int menucode;
 
 	private String description;
 
-	//bi-directional many-to-many association to Profile
-	@ManyToMany
-	@JoinTable(
-		name="menu_profile"
-		, joinColumns={
-			@JoinColumn(name="menucode")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="profilecode")
-			}
-		)
+	// bi-directional many-to-many association to Profile
+	@ManyToMany(mappedBy = "menus")
 	private List<Profile> profiles;
 
 	public Menu() {

@@ -19,12 +19,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/home").authenticated()
-		                       .antMatchers("/admin").hasRole("ADMIN")
-		                       .and().exceptionHandling().accessDeniedPage("/unauthorized").and().formLogin().loginPage("/login")
-							   .failureUrl("/login?erro=true").defaultSuccessUrl("/home")
-							   .loginProcessingUrl("/j_spring_security_check").usernameParameter("j_username")
-							   .passwordParameter("j_password").and().logout().logoutUrl("/j_spring_security_logout")
-							   .logoutSuccessUrl("/").and().csrf().disable();
+		http.authorizeRequests().antMatchers("/home").authenticated().antMatchers("/admin").hasRole("ADMIN").and()
+				.exceptionHandling().accessDeniedPage("/unauthorized").and().formLogin().loginPage("/login")
+				.failureUrl("/login?erro=true").defaultSuccessUrl("/home")
+				.loginProcessingUrl("/j_spring_security_check").usernameParameter("j_username")
+				.passwordParameter("j_password").and().logout().logoutUrl("/j_spring_security_logout")
+				.logoutSuccessUrl("/").and().csrf().disable();
 	}
 }

@@ -1,32 +1,37 @@
 package br.com.lilianabrito.lobloc.vo;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Embeddable;
 
 /**
- * The primary key class for the estimate_pieces database table.
+ * The primary key class for the estimatepieces database table.
  * 
  */
 @Embeddable
-public class EstimatePiecePK implements Serializable {
-	//default serial version id, required for serializable classes.
+public class EstimatepiecePK implements Serializable {
+	// default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
 	private int estimatecode;
 
 	private int piecescode;
 
-	public EstimatePiecePK() {
+	public EstimatepiecePK() {
 	}
+
 	public int getEstimatecode() {
 		return this.estimatecode;
 	}
+
 	public void setEstimatecode(int estimatecode) {
 		this.estimatecode = estimatecode;
 	}
+
 	public int getPiecescode() {
 		return this.piecescode;
 	}
+
 	public void setPiecescode(int piecescode) {
 		this.piecescode = piecescode;
 	}
@@ -35,13 +40,11 @@ public class EstimatePiecePK implements Serializable {
 		if (this == other) {
 			return true;
 		}
-		if (!(other instanceof EstimatePiecePK)) {
+		if (!(other instanceof EstimatepiecePK)) {
 			return false;
 		}
-		EstimatePiecePK castOther = (EstimatePiecePK)other;
-		return 
-			(this.estimatecode == castOther.estimatecode)
-			&& (this.piecescode == castOther.piecescode);
+		EstimatepiecePK castOther = (EstimatepiecePK) other;
+		return (this.estimatecode == castOther.estimatecode) && (this.piecescode == castOther.piecescode);
 	}
 
 	public int hashCode() {
@@ -49,7 +52,7 @@ public class EstimatePiecePK implements Serializable {
 		int hash = 17;
 		hash = hash * prime + this.estimatecode;
 		hash = hash * prime + this.piecescode;
-		
+
 		return hash;
 	}
 }

@@ -1,28 +1,34 @@
 package br.com.lilianabrito.lobloc.vo;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the pieces database table.
  * 
  */
 @Entity
-@Table(name="pieces")
-@NamedQuery(name="Piece.findAll", query="SELECT p FROM Piece p")
+@Table(name = "pieces")
+@NamedQuery(name = "Piece.findAll", query = "SELECT p FROM Piece p")
 public class Piece implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int piecescode;
 
 	private String color;
 
-	private String description;
+	private String piecesdesc;
 
 	private BigDecimal price;
 
@@ -30,9 +36,9 @@ public class Piece implements Serializable {
 
 	private String reference;
 
-	//bi-directional many-to-one association to PiecesAgenda
-	@OneToMany(mappedBy="piece")
-	private List<PiecesAgenda> piecesAgendas;
+	// bi-directional many-to-one association to Piecesagenda
+	@OneToMany(mappedBy = "piece")
+	private List<Piecesagenda> piecesagendas;
 
 	public Piece() {
 	}
@@ -53,12 +59,12 @@ public class Piece implements Serializable {
 		this.color = color;
 	}
 
-	public String getDescription() {
-		return this.description;
+	public String getPiecesdesc() {
+		return this.piecesdesc;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setPiecesdesc(String piecesdesc) {
+		this.piecesdesc = piecesdesc;
 	}
 
 	public BigDecimal getPrice() {
@@ -85,26 +91,26 @@ public class Piece implements Serializable {
 		this.reference = reference;
 	}
 
-	public List<PiecesAgenda> getPiecesAgendas() {
-		return this.piecesAgendas;
+	public List<Piecesagenda> getPiecesagendas() {
+		return this.piecesagendas;
 	}
 
-	public void setPiecesAgendas(List<PiecesAgenda> piecesAgendas) {
-		this.piecesAgendas = piecesAgendas;
+	public void setPiecesagendas(List<Piecesagenda> piecesagendas) {
+		this.piecesagendas = piecesagendas;
 	}
 
-	public PiecesAgenda addPiecesAgenda(PiecesAgenda piecesAgenda) {
-		getPiecesAgendas().add(piecesAgenda);
-		piecesAgenda.setPiece(this);
+	public Piecesagenda addPiecesagenda(Piecesagenda piecesagenda) {
+		getPiecesagendas().add(piecesagenda);
+		piecesagenda.setPiece(this);
 
-		return piecesAgenda;
+		return piecesagenda;
 	}
 
-	public PiecesAgenda removePiecesAgenda(PiecesAgenda piecesAgenda) {
-		getPiecesAgendas().remove(piecesAgenda);
-		piecesAgenda.setPiece(null);
+	public Piecesagenda removePiecesagenda(Piecesagenda piecesagenda) {
+		getPiecesagendas().remove(piecesagenda);
+		piecesagenda.setPiece(null);
 
-		return piecesAgenda;
+		return piecesagenda;
 	}
 
 }
