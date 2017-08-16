@@ -3,7 +3,6 @@ package br.com.lilianabrito.lobloc.vo;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -36,13 +35,6 @@ public class Piece implements Serializable {
 	private List<PiecesAgenda> piecesAgendas;
 
 	public Piece() {
-	}
-	public Piece(boolean inGenerateReferenceNumber) {
-		if(inGenerateReferenceNumber){
-			this.reference = new Timestamp(System.currentTimeMillis()).toString().substring(0,19).replaceAll(" ", "").replaceAll("-", "").replaceAll(":", "");
-		}
-			
-		
 	}
 
 	public int getPiecescode() {
@@ -114,5 +106,5 @@ public class Piece implements Serializable {
 
 		return piecesAgenda;
 	}
-	
+
 }

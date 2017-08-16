@@ -28,7 +28,7 @@ public class PieceController {
          
         ModelAndView mv = new ModelAndView("/piece/searchpieces");
         mv.addObject("pieces", service.findAll());
-        mv.addObject("piece", new Piece(true));
+        mv.addObject("piece", new Piece());
         
         return mv;
     }
