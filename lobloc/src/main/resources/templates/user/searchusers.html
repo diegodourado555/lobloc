@@ -50,7 +50,7 @@
 							<div class="col-md-4">
 								<label>Perfis de acesso:</label>
 								<th:block th:each="profile : ${profiles}">
-									<input type="checkbox" name="cbxProfile" th:value="${profile.profilecode}" th:field="*{profiles}" />
+									<input type="checkbox" name="cbxProfiles" th:value="${profile.profilecode}" th:field="*{profiles}" />
 									<label th:text="${profile.description}"></label>
 								</th:block>
 							</div>

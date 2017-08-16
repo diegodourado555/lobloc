@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 
@@ -26,7 +28,16 @@ public class Menu implements Serializable {
 	private String description;
 
 	// bi-directional many-to-many association to Profile
-	@ManyToMany(mappedBy = "menus")
+	@ManyToMany
+    @JoinTable(
+            name="menuprofile"
+            , joinColumns={
+                    @JoinColumn(name="menucode")
+                }
+            , inverseJoinColumns={
+                    @JoinColumn(name="profilecode")
+                }
+            )
 	private List<Profile> profiles;
 
 	public Menu() {

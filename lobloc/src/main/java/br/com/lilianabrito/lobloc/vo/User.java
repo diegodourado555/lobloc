@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -22,7 +22,6 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String cpf;
 
 	private String name;
@@ -30,7 +29,16 @@ public class User implements Serializable {
 	private String password;
 
 	// bi-directional many-to-many association to Profile
-	@ManyToMany(mappedBy = "users")
+	 @ManyToMany
+	    @JoinTable(
+	            name="userprofile"
+	            , joinColumns={
+	                    @JoinColumn(name="cpf")
+	                }
+	            , inverseJoinColumns={
+	                    @JoinColumn(name="profilecode")
+	                }
+	            )
 	private List<Profile> profiles;
 
 	public User() {

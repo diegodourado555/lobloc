@@ -26,16 +26,24 @@
 					<fieldset>
 						<div class="form-group row">
 							<div class="col-md-4">
-								<label>Código</label> <input type="text" readonly="true" 
+								<label>Código</label> <input type="text" readonly="true"
 									class="form-control input-sm" th:field="*{piecescode}"
-									maxlength="50" />
+									maxlength="150" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4">
+								<label>Descrição</label> <input type="text"
+									class="form-control input-sm" th:field="*{piecesdesc}"
+									autofocus="autofocus" placeholder="Informe a descrição"
+									maxlength="150" />
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-md-4">
 								<label>Cor</label> <input type="text"
 									class="form-control input-sm" th:field="*{color}"
-									autofocus="autofocus" placeholder="Informe a cor"
+									placeholder="Informe a cor"
 									maxlength="50" />
 							</div>
 						</div>
@@ -57,13 +65,6 @@
 							<div class="col-md-4">
 								<label>Referência</label> <input type="text" readonly="true"
 									class="form-control input-sm" th:field="*{reference}"
-									maxlength="150" />
-							</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-md-4">
-								<label>Descrição</label> <input type="text"
-									class="form-control input-sm" th:field="*{description}"
 									maxlength="150" />
 							</div>
 						</div>
@@ -96,7 +97,7 @@
 							<td th:text="${piece.price}"></td>
 							<td th:text="${piece.quantity}"></td>
 							<td th:text="${piece.reference}"></td>
-							<td th:text="${piece.description}"></td>
+							<td th:text="${piece.piecesdesc}"></td>
 							<td>
 								<div class="btn-group pull-right">
 									<a class="btn btn-sm btn-primary"

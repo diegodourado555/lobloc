@@ -1,5 +1,7 @@
 package br.com.lilianabrito.lobloc.controller;
 
+import java.sql.Timestamp;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +55,7 @@ public class PieceController {
 		if (result.hasErrors()) {
 			// TODO: fazer algo quando der erro
 		}
-
+		piece.setReference(new Timestamp(System.currentTimeMillis()).toString().substring(0, 19).replaceAll(":", "").replaceAll("-", "").replaceAll(" ", ""));
 		service.save(piece);
 
 		return findAll();

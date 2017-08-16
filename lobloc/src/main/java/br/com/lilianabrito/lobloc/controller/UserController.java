@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.lilianabrito.lobloc.service.ProfileService;
 import br.com.lilianabrito.lobloc.service.UserService;
+import br.com.lilianabrito.lobloc.vo.Profile;
 import br.com.lilianabrito.lobloc.vo.User;
 
 @Controller
@@ -53,8 +55,8 @@ public class UserController {
 	}
 
 	@PostMapping("/saveuser")
-	public ModelAndView save(@ModelAttribute("user") User user, BindingResult result) {
-
+	public ModelAndView save(@ModelAttribute("user") User user,@RequestParam(value = "cbxProfiles" , required = false) int[] cbxProfiles, BindingResult result) {
+		
 		service.save(user);
 
 		return findAll();

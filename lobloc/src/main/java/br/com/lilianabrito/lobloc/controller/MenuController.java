@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.lilianabrito.lobloc.service.MenuService;
 import br.com.lilianabrito.lobloc.service.ProfileService;
 import br.com.lilianabrito.lobloc.vo.Menu;
+import br.com.lilianabrito.lobloc.vo.Profile;
 
 @Controller
 public class MenuController {
@@ -52,8 +54,8 @@ public class MenuController {
 	}
 
 	@PostMapping("/savemenu")
-	public ModelAndView save(@ModelAttribute("menu") Menu menu, BindingResult result) {
-
+	public ModelAndView save(@ModelAttribute("menu") Menu menu, @RequestParam(value = "cbxProfiles" , required = false) int[] cbxProfiles, BindingResult result) {
+		
 		service.save(menu);
 
 		return findAll();

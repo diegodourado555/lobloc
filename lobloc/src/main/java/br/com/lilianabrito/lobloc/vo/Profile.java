@@ -27,17 +27,31 @@ public class Profile implements Serializable {
 
 	private String description;
 
-	// bi-directional many-to-many association to Menu
-	@ManyToMany
-	@JoinTable(name = "menuprofile", joinColumns = { @JoinColumn(name = "profilecode") }, inverseJoinColumns = {
-			@JoinColumn(name = "menucode") })
-	private List<Menu> menus;
+	//bi-directional many-to-many association to Menu
+		@ManyToMany
+		@JoinTable(
+			name="menuprofile"
+			, joinColumns={
+				@JoinColumn(name="profilecode")
+				}
+			, inverseJoinColumns={
+				@JoinColumn(name="menucode")
+				}
+			)
+		private List<Menu> menus;
 
-	// bi-directional many-to-many association to User
-	@ManyToMany
-	@JoinTable(name = "userprofile", joinColumns = { @JoinColumn(name = "profilecode") }, inverseJoinColumns = {
-			@JoinColumn(name = "cpf") })
-	private List<User> users;
+		//bi-directional many-to-many association to User
+		@ManyToMany
+		@JoinTable(
+			name="userprofile"
+			, joinColumns={
+				@JoinColumn(name="profilecode")
+				}
+			, inverseJoinColumns={
+				@JoinColumn(name="cpf")
+				}
+			)
+		private List<User> users;
 
 	public Profile() {
 	}
