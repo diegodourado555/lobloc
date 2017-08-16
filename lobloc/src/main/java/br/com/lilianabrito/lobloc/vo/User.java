@@ -1,7 +1,15 @@
 package br.com.lilianabrito.lobloc.vo;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
@@ -20,12 +28,24 @@ public class User implements Serializable {
 	private String name;
 
 	private String password;
+	
+	@ManyToMany
+	@JoinTable(
+			name="userprofile"
+			, joinColumns={
+					@JoinColumn(name="cpf")
+				}
+			, inverseJoinColumns={
+					@JoinColumn(name="profilecode")
+				}
+			)
+	private List<Profile> profiles;
 
 	public User() {
 	}
 
 	public String getCpf() {
-		return this.cpf;
+		return cpf;
 	}
 
 	public void setCpf(String cpf) {
@@ -33,7 +53,7 @@ public class User implements Serializable {
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -41,11 +61,19 @@ public class User implements Serializable {
 	}
 
 	public String getPassword() {
-		return this.password;
+		return password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<Profile> getProfiles() {
+		return profiles;
+	}
+
+	public void setProfiles(List<Profile> profiles) {
+		this.profiles = profiles;
 	}
 
 }

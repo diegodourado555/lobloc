@@ -26,9 +26,9 @@
 					<fieldset>
 						<div class="form-group row">
 							<div class="col-md-4">
-								<label>CPF</label> <input type="text"  placeholder="Informe o cpf"
-									class="form-control input-sm" th:field="*{cpf}"
-									maxlength="50" />
+								<label>CPF</label> <input type="text"
+									placeholder="Informe o cpf" class="form-control input-sm"
+									th:field="*{cpf}" maxlength="50" />
 							</div>
 						</div>
 						<div class="form-group row">
@@ -44,6 +44,15 @@
 								<label>Senha</label> <input type="password"
 									class="form-control input-sm" th:field="*{password}"
 									maxlength="150" placeholder="Informe a senha" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-4">
+								<label>Perfis de acesso:</label>
+								<th:block th:each="profile : ${profiles}">
+									<input type="checkbox" name="cbxProfile" th:value="${profile.profilecode}" th:field="*{profiles}" />
+									<label th:text="${profile.description}"></label>
+								</th:block>
 							</div>
 						</div>
 					</fieldset>

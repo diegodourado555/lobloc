@@ -1,8 +1,14 @@
 package br.com.lilianabrito.lobloc.vo;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 
 
 /**
@@ -21,36 +27,18 @@ public class Profile implements Serializable {
 	private String description;
 
 	//bi-directional many-to-many association to Menu
-	@ManyToMany
-	@JoinTable(
-		name="menu_perfil"
-		, joinColumns={
-			@JoinColumn(name="profilecode")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="menucode")
-			}
-		)
+	@ManyToMany(mappedBy="profiles")	
 	private List<Menu> menus;
 
 	//bi-directional many-to-many association to User
-	@ManyToMany
-	@JoinTable(
-		name="usuario_perfil"
-		, joinColumns={
-			@JoinColumn(name="profilecode")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="cpf")
-			}
-		)
+	@ManyToMany(mappedBy="profiles")
 	private List<User> users;
 
 	public Profile() {
 	}
 
 	public Integer getProfilecode() {
-		return this.profilecode;
+		return profilecode;
 	}
 
 	public void setProfilecode(Integer profilecode) {
@@ -58,7 +46,7 @@ public class Profile implements Serializable {
 	}
 
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 
 	public void setDescription(String description) {
@@ -66,7 +54,7 @@ public class Profile implements Serializable {
 	}
 
 	public List<Menu> getMenus() {
-		return this.menus;
+		return menus;
 	}
 
 	public void setMenus(List<Menu> menus) {
@@ -74,7 +62,7 @@ public class Profile implements Serializable {
 	}
 
 	public List<User> getUsers() {
-		return this.users;
+		return users;
 	}
 
 	public void setUsers(List<User> users) {
